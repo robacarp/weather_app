@@ -1,16 +1,13 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-if ! gem list foreman -i --silent; then
-  echo "Installing foreman..."
-  gem install foreman
+if [ ! -f .env ] ; then
+  echo ".env file not found. Please create one from .env.example"
+  exit 1
 fi
 
-# Default to port 3000 if not specified
-export PORT="${PORT:-3000}"
+if grep WEATHER_API_KEY=0000000000000000000000000000000 .env ; then
+  echo "Please set the WEATHER_API_KEY in the .env file"
+  exit 1
+fi
 
-# Let the debug gem allow remote connections,
-# but avoid loading until `debugger` is called
-export RUBY_DEBUG_OPEN="true"
-export RUBY_DEBUG_LAZY="true"
-
-exec foreman start -f Procfile.dev "$@"
+docker compose up --build

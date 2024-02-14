@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+docker compose run --build server yard
+open doc/index.html

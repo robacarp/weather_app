@@ -4,7 +4,7 @@
 
 This project uses the weather api from [WeatherAPI](https://www.weatherapi.com/) to retrieve conditions and forecast data based on user provided location. The location geocoding is handled by WeatherAPI. Results are cached in Redis. I used a default Rails 7 installation, with no database. Tailwindcss-rails is used to simplify styling.
 
-Tests can be run with `docker compose run test`.
+Tests can be run with `bin/test`.
 
 # Assignment
 
@@ -37,14 +37,18 @@ Submission:
 
 - Clone the repo
 - `cp .env.example .env` and fill in your WeatherAPI key.
-- Run `docker compose up` in the root directory.
+- Run `bin/dev` in the root directory.
 - Visit [http://localhost:3000](http://localhost:3000)
 
 ## Caching:
 
-- Rails caching is disabled in development by default, but is enabled with the `rails dev:cache` command.
-- This project is setup to use Redis for caching, and the docker-compose includes a redis container. To manually flush the cache, run `docker compose exec redis redis-cli -c flushdb`
+- Rails caching is disabled in development by default. Caching for development is enabled with the `rails dev:cache` command.
+- This project is setup to use Redis for caching, and the docker-compose includes a redis container. To manually flush the cache, run `/bin/flushcache`
 
 ## Documentation:
 
-This assignment has been documented using YARD. Run `docker compose exec server yard` to generate documentation, and then `open docs/index.html`.
+This assignment has been documented using YARD. Run `bin/docs` to generate documentation, and open `doc/index.html`.
+
+## Tests:
+
+To run the tests within docker, use `bin/test`.
