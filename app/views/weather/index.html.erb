@@ -1,0 +1,8 @@
+<% if @error %>
+  <p class="text-red-500"><%= @error %></p>
+<% end %>
+
+<%= form_with method: :get, url: weather_forecast_path, class: "flex flex-col gap-4 w-72" do |f| %>
+  <%= f.text_field :location, placeholder: "Zip Code or City Name" %>
+  <%= f.submit "Look up weather" %>
+<% end %>
